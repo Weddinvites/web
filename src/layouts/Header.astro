@@ -1,6 +1,7 @@
 ---
 import { navigate } from "astro:transitions/client";
 import { LangSelector } from "../components/header/LangSelector";
+
 const { languagesList, currentLang } = Astro.props
 
 const navigation = {
@@ -75,7 +76,7 @@ const currentNav = navigation[currentLang]
       >
     </div>
     <div class="w-full bg-secondd-700 py-5 px-5 absolute top-0 overflow-visible z-[900] hidden lg:block lg:w-3/4 lg:relative lg:bg-transparent">
-      <LangSelector langs={languagesList} currentLang={currentLang} client:only="react" />
+      <LangSelector langs={languagesList} currentLang={currentLang} client:visible />
       <nav
         id="nav-list"
         class="mt-5"
