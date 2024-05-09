@@ -1,6 +1,44 @@
 ---
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+
+        const contact = {
+            name: data.get("inloveName"),
+            email: data.get("inloveEmail"),
+            phone: data.get("inlovePhone"),
+            date: data.get("inloveDate"),
+            plan: data.get("inlovePlan"),
+            message: data.get("inloveComments"),
+            contacted: new Date(),
+        };
+
+        fetch("https://www.creativoapp.com/App/Handlers/Wedding.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(contact),
+        })
+            .then((response) => {
+                // return response.text(); // returns text that can used as html
+                return response.json(); // returns json object
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch(function (err) {
+                console.log("Failed to fetch page: ", err);
+            });
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error(error.message);
+        }
+    }
+}
+
 import Layout from "../layouts/Layout.astro"
-export const prerender = true
 ---
 
 <Layout title="Contáctanos para Invitaciones Digitales Personalizadas - Weddinvites" metaDescription="¿Necesitas ayuda con tus invitaciones digitales? ¡Contáctanos hoy mismo y comienza a diseñar tus invitaciones personalizadas con Weddinvites!">
@@ -48,7 +86,6 @@ export const prerender = true
         </article>
 
         <form
-            action=""
             method="POST"
             class="py-5 px-5 rounded-md mb-10 border-solid border-2 border-gray-100 shadow-xl lg:flex lg:flex-wrap"
         >
