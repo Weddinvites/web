@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro"
+export const prerender = false
 
 if (Astro.request.method === "POST") {
     try {

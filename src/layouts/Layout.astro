@@ -1,6 +1,5 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-export const prerender = false;
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 interface Props {
@@ -9,9 +8,10 @@ interface Props {
 
 const { title, metaDescription } = Astro.props;
 const currentLang = Astro.currentLocale
+const availableLangs = ["es", "en"]
 ---
 
-<html lang={Astro.currentLocale}>
+<html lang={currentLang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={metaDescription} />
@@ -29,7 +29,7 @@ const currentLang = Astro.currentLocale
 		/>
 	</head>
 	<body>
-		<Header languagesList={Astro.preferredLocaleList} currentLang={currentLang} />
+		<Header languagesList={availableLangs} currentLang={currentLang} />
 		<slot />
 		<Footer currentLang={currentLang} />
 	</body>
