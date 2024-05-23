@@ -19,17 +19,25 @@ const availableLangs = ["es", "en"]
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		
 		<ViewTransitions />
-
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Lora&family=Parisienne&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css2?family=Lora&family=Parisienne&display=swap" rel="stylesheet" />
+
+		<!-- Google tag (gtag.js) -->
+		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-X4FTRVT1FV"></script>
+		<script type="text/partytown">
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-X4FTRVT1FV');
+		</script>
 	</head>
 	<body>
-		<Header languagesList={availableLangs} currentLang={currentLang} />
+		<Header languagesList={availableLangs} currentLang={currentLang} transition:persist />
 		<slot />
 		<Footer currentLang={currentLang} />
 	</body>
