@@ -52,9 +52,9 @@ const currentNav = navigation[currentLang]
     <div
       class="w-full bg-secondd-300 py-1 px-5 flex justify-between items-center lg:w-1/4 lg:bg-transparent"
     >
-      <a href={currentLang === "en" ? "/en" : "/" }
-        ><img src="/wedding-invites.png" class="w-1/3 lg:w-1/2" alt="" /></a
-      >
+      <a href={currentLang === "en" ? "/en" : "/" } aria-label="Weddinvites" >
+        <img src="/wedding-invites.webp" class="w-1/3 lg:w-1/2" alt="" />
+      </a>
       <a class="lg:hidden" id="nav">
         <svg
           xmlns="http://www.w3.org/2000/svg"

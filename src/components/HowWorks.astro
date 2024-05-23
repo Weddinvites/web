@@ -7,7 +7,7 @@ const { steps } = Astro.props;
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
     {
         steps.map((how:any) => (
-            <CardHow title={how.step} content={how.summary} icon={how.icon} />
+            <CardHow title={how.step} content={how.summary} icon={how.icon} altText={how.altText} />
         ))
     }
 </div>
