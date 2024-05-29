@@ -7,8 +7,8 @@ interface Props {
 }
 
 const { title, metaDescription } = Astro.props;
-const currentLang = Astro.currentLocale
-const availableLangs = ["es", "en"]
+const currentLang = Astro.currentLocale;
+const availableLangs = ["es", "en"];
 ---
 
 <html lang={currentLang}>
@@ -16,10 +16,24 @@ const availableLangs = ["es", "en"]
 		<meta charset="UTF-8" />
 		<meta name="description" content={metaDescription} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
@@ -27,21 +41,48 @@ const availableLangs = ["es", "en"]
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Lora&family=Parisienne&display=swap" rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lora&family=Parisienne&display=swap"
+			rel="stylesheet"
+		/>
 
 		<!-- Google tag (gtag.js) -->
-		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-X4FTRVT1FV"></script>
+		<script
+			type="text/partytown"
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-X4FTRVT1FV"
+		></script>
 		<script type="text/partytown">
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
 
-			gtag('config', 'G-X4FTRVT1FV');
+			gtag("config", "G-X4FTRVT1FV");
 		</script>
 	</head>
 	<body>
-		<Header languagesList={availableLangs} currentLang={currentLang} transition:persist />
+		<Header
+			languagesList={availableLangs}
+			currentLang={currentLang}
+			transition:persist
+		/>
 		<slot />
 		<Footer currentLang={currentLang} />
+		<script>
+			function initNavigation() {
+				const nav = document.querySelector("#nav");
+				console.log(nav);
+				if (nav) {
+					const navList = document.querySelector("#nav-list");
+					nav.addEventListener("click", (e) => {
+						navList?.classList.toggle("hidden");
+					});
+				}
+			}
+			document.addEventListener("astro:after-swap", initNavigation);
+			initNavigation();
+		</script>
 	</body>
 </html>

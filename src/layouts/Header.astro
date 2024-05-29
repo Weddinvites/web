@@ -2,49 +2,50 @@
 import { navigate } from "astro:transitions/client";
 import { LangSelector } from "../components/header/LangSelector";
 
-const { languagesList, currentLang } = Astro.props
+const { languagesList, currentLang } = Astro.props;
 
 const navigation = {
-  "es": [
+  es: [
     {
       label: "Planes",
-      link: "/planes"
+      link: "/planes",
     },
     {
       label: "Características",
-      link: "/caracteristicas"
+      link: "/caracteristicas",
     },
     {
       label: "Wedding Planners",
-      link: "/wedding-planer"
+      link: "/wedding-planer",
     },
     {
       label: "Contacto",
-      link: "/contacto"
-    }
+      link: "/contacto",
+    },
   ],
-  "en": [
+  en: [
     {
       label: "Plans",
-      link: "/en/plans"
+      link: "/en/plans",
     },
     {
       label: "Features",
-      link: "/en/features"
+      link: "/en/features",
     },
     {
       label: "Wedding Planners",
-      link: "/en/wedding-planer"
+      link: "/en/wedding-planer",
     },
     {
       label: "Contact",
-      link: "/en/contact"
-    }
-  ]
-}
+      link: "/en/contact",
+    },
+  ],
+};
 
-const currentNav = navigation[currentLang]
+const currentNav = navigation[currentLang];
 ---
+
 <header class="lg:bg-secondd-300">
   <div
     class="flex flex-col relative lg:mx-auto lg:flex-row xl:w-11/12 xl:m-auto"
@@ -52,7 +53,7 @@ const currentNav = navigation[currentLang]
     <div
       class="w-full bg-secondd-300 py-1 px-5 flex justify-between items-center lg:w-1/4 lg:bg-transparent"
     >
-      <a href={currentLang === "en" ? "/en" : "/" } aria-label="Weddinvites" >
+      <a href={currentLang === "en" ? "/en" : "/"} aria-label="Weddinvites">
         <img src="/wedding-invites.webp" class="w-1/3 lg:w-1/2" alt="" />
       </a>
       <a class="lg:hidden" id="nav">
@@ -75,20 +76,32 @@ const currentNav = navigation[currentLang]
         </svg>
       </a>
     </div>
-    <div id="nav-list" class="w-full bg-secondd-700 py-5 px-5 top-0 hidden overflow-visible z-[900] lg:block lg:w-3/4 lg:relative lg:bg-transparent">
-      <LangSelector langs={languagesList} currentLang={currentLang} client:visible />
-      <nav
-        class="mt-5"
-      >
+    <div
+      id="nav-list"
+      class="w-full bg-secondd-700 py-5 px-5 top-0 hidden overflow-visible z-[900] lg:block lg:w-3/4 lg:relative lg:bg-transparent"
+    >
+      <LangSelector
+        langs={languagesList}
+        currentLang={currentLang}
+        client:visible
+      />
+      <nav class="mt-5">
         <ul
           class="flex flex-col text-white lg:flex-row lg:justify-end lg:items-center lg:h-full lg:space-x-5 lg:text-black"
         >
-          {currentNav.map(({label, link}) => (
-            <li>
-              <a href={link} class="text-xl w-full text-center block py-2 my-1">{label}</a>
-            </li>
-          ))}
-          
+          {
+            currentNav.map(({ label, link }) => (
+              <li>
+                <a
+                  href={link}
+                  class="text-xl w-full text-center block py-2 my-1"
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+
           <!-- <li>
             <a href="/caracteristicas" class="lg:text-xl">Características</a>
           </li>
@@ -111,12 +124,3 @@ const currentNav = navigation[currentLang]
     </div>
   </div>
 </header>
-<script>
-  const nav = document.querySelector("#nav");
-  if (nav) {
-    const navList = document.querySelector("#nav-list");
-    nav.addEventListener("click", (e) => {
-      navList?.classList.toggle("hidden");
-    });
-  }
-</script>
