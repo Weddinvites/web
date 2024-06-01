@@ -3,13 +3,14 @@ interface Props {
     title: string;
     content: string;
     icon: string;
+    altTxt: string;
 }
 
-const { title, content, icon } = Astro.props;
+const { title, content, icon, altTxt } = Astro.props;
 ---
 
 <div class="flex flex-col justify-around items-center border-2 border-secondd-300 py-5 px-5 rounded-md mb-5 shadow-xl">
-    <img class="w-16 h-16" src={icon} />
+    <img class="w-16 h-16" src={icon} alt={altTxt} />
     <h5 class="text-secondd-500 uppercase block mt-3">{title}</h5>
     <p class="mt-0 text-base">{content}</p>
 </div>
