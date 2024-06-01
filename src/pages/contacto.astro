@@ -3,8 +3,10 @@ export const prerender = false;
 console.log(Astro.request.method)
 
 if (Astro.request.method === "POST") {
+    console.log("Entró al POST")
     try {
         const data = await Astro.request.formData();
+        console.log(data)
 
         const contact = {
             name: data.get("inloveName"),
@@ -39,6 +41,8 @@ if (Astro.request.method === "POST") {
             console.error(error.message);
         }
     }
+}else{
+    console.log("No entró al POST")
 }
 
 import Layout from "../layouts/Layout.astro"
