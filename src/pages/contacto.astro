@@ -1,10 +1,27 @@
 ---
-export const prerender = false;
-console.log(Astro.request.method)
+export const prerender = false
+import { Resend } from 'resend'
 
 if (Astro.request.method === "POST") {
     console.log("Entró al POST")
-    try {
+
+    const resend = new Resend('re_3Xp9Ey98_9ovvKNYK1rhnSuNYsY5AuY12')
+
+    const { data, error } = await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: ['delivered@resend.dev'],
+        subject: 'Hello World',
+        html: '<strong>It works!</strong>',
+    });
+
+    if (error) {
+        return console.log({ error })
+    }
+
+    console.log({ data })
+
+    /* try {
+
         const data = await Astro.request.formData();
         console.log(data)
 
@@ -40,7 +57,7 @@ if (Astro.request.method === "POST") {
         if (error instanceof Error) {
             console.error(error.message);
         }
-    }
+    } */
 }else{
     console.log("No entró al POST")
 }
