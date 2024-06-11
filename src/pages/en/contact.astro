@@ -1,4 +1,44 @@
 ---
+export const prerender = false
+import { Resend } from 'resend'
+
+if (Astro.request.method === "POST") {
+    const resend = new Resend('re_3Xp9Ey98_9ovvKNYK1rhnSuNYsY5AuY12')
+
+    const frmData = await Astro.request.formData();
+
+    const contact = {
+        name: frmData.get("inloveName"),
+        email: frmData.get("inloveEmail"),
+        phone: frmData.get("inlovePhone"),
+        date: frmData.get("inloveDate"),
+        plan: frmData.get("inlovePlan"),
+        message: frmData.get("inloveComments"),
+        contacted: new Date(),
+    }
+
+    const { data, error } = await resend.emails.send({
+        from: 'Contact <contact@weddinvites.com>',
+        to: ['leads@weddinvites.com'],
+        subject: 'Contact from Weddinvites.com',
+        html: `
+            <p>Nombre: ${contact.name}</p>
+            <p>Email: ${contact.email}</p>
+            <p>Teléfono: ${contact.phone}</p>
+            <p>Fecha: ${contact.date}</p>
+            <p>Plan: ${contact.plan}</p>
+            <p>Mensaje: ${contact.message}</p>
+            <p>Fecha de Contacto: ${contact.contacted}</p>
+        `
+    })
+
+    if (error) {
+        return console.log({ error })
+    }
+
+    console.log(data)
+}
+
 import Layout from "../../layouts/Layout.astro";
 ---
 
@@ -44,7 +84,7 @@ import Layout from "../../layouts/Layout.astro";
         </article>
 
         <form
-            action=""
+            method="POST"
             class="py-5 px-5 rounded-md mb-10 border-solid border-2 border-gray-100 shadow-xl lg:flex lg:flex-wrap"
         >
             <fieldset class="block mb-5 lg:w-1/2 lg:px-3">

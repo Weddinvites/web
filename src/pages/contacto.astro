@@ -3,63 +3,40 @@ export const prerender = false
 import { Resend } from 'resend'
 
 if (Astro.request.method === "POST") {
-    console.log("Entró al POST")
-
     const resend = new Resend('re_3Xp9Ey98_9ovvKNYK1rhnSuNYsY5AuY12')
 
+    const frmData = await Astro.request.formData();
+
+    const contact = {
+        name: frmData.get("inloveName"),
+        email: frmData.get("inloveEmail"),
+        phone: frmData.get("inlovePhone"),
+        date: frmData.get("inloveDate"),
+        plan: frmData.get("inlovePlan"),
+        message: frmData.get("inloveComments"),
+        contacted: new Date(),
+    };
+
     const { data, error } = await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
-        to: ['delivered@resend.dev'],
-        subject: 'Hello World',
-        html: '<strong>It works!</strong>',
+        from: 'Contacto <contacto@weddinvites.com>',
+        to: ['leads@weddinvites.com'],
+        subject: 'Contacto desde Weddinvites.com',
+        html: `
+            <p>Nombre: ${contact.name}</p>
+            <p>Email: ${contact.email}</p>
+            <p>Teléfono: ${contact.phone}</p>
+            <p>Fecha: ${contact.date}</p>
+            <p>Plan: ${contact.plan}</p>
+            <p>Mensaje: ${contact.message}</p>
+            <p>Fecha de Contacto: ${contact.contacted}</p>
+        `
     });
 
     if (error) {
         return console.log({ error })
     }
 
-    console.log({ data })
-
-    /* try {
-
-        const data = await Astro.request.formData();
-        console.log(data)
-
-        const contact = {
-            name: data.get("inloveName"),
-            email: data.get("inloveEmail"),
-            phone: data.get("inlovePhone"),
-            date: data.get("inloveDate"),
-            plan: data.get("inlovePlan"),
-            message: data.get("inloveComments"),
-            contacted: new Date(),
-        };
-
-        fetch("https://www.creativoapp.com/App/Handlers/Wedding.php", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(contact),
-        })
-            .then((response) => {
-                // return response.text(); // returns text that can used as html
-                return response.json(); // returns json object
-            })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch(function (err) {
-                console.log("Failed to fetch page: ", err);
-            });
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error(error.message);
-        }
-    } */
-}else{
-    console.log("No entró al POST")
+    console.log(data)
 }
 
 import Layout from "../layouts/Layout.astro"
