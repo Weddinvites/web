@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>https://weddinvites.com/</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://weddinvites.com/planes</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://weddinvites.com/caracteristicas</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://weddinvites.com/wedding-planer</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://weddinvites.com/contacto</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://weddinvites.com/preguntas-frecuentes</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://weddinvites.com/politicas-privacidad</loc>
+  <lastmod>2024-06-15T01:17:53+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
