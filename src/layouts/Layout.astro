@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { title, metaDescription } = Astro.props;
+const permalink = new URL(Astro.url.pathname, Astro.site).href;
 const currentLang = Astro.currentLocale;
 const availableLangs = ["es", "en"];
 ---
@@ -38,8 +39,22 @@ const availableLangs = ["es", "en"];
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={permalink} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={metaDescription} />
+		<meta property="og:image" content="wedding-invites.webp" />
+	  
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={permalink} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={metaDescription} />
+		<meta property="twitter:image" content="wedding-invites.webp" />
+
 		<ViewTransitions />
-		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="sitemap" href="/sitemap.xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
